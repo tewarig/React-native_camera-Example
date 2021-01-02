@@ -45,7 +45,15 @@ const App = () => {
 <>
 <StatusBar />
 <View style={styles.container}>
-  {image ? (<Text>Image is present</Text>) : 
+  {image ? (
+    <>
+    <View style={styles.preview}>
+  <Text style={styles.camText}>Here is your new profile image.</Text>
+  <Image style={styles.clicked} source={{uri:image,width: '90%',height:'50%'}}/>
+  <Button title="Click new pic" onPress={()=>{setImage(null)}} ></Button>
+  </View>
+  </>
+  ) : 
   (<RNCamera style={styles.preview} 
     type={RNCamera.Constants.Type.front}
      captureAudio={false} 
@@ -99,6 +107,12 @@ const styles = StyleSheet.create({
      textAlign: "center",
      paddingVertical: 20,
      fontSize: 25
+   },
+   clicked:{
+     width:300,
+     height: 300,
+     borderRadius: 150,
+
    }
 });
 
